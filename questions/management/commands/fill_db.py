@@ -28,7 +28,7 @@ class Command(BaseCommand):
 
     def create_users(self):
         faker = Faker()
-        for i in range(10000):
+        for i in range(10):
             user = User()
             user.first_name = faker.first_name()
             user.last_name = faker.last_name()
@@ -49,7 +49,7 @@ class Command(BaseCommand):
         tags_set = Tag.objects.all()
         author_set = User.objects.all()
         print()
-        for i in range(100000):
+        for i in range(100):
             post = Question()
             post.author = random.choice(author_set)
             post.title = fake.sentence(
@@ -109,7 +109,7 @@ class Command(BaseCommand):
         question_set = Question.objects.all()
         author_set = User.objects.all()
 
-        for i in range(100000):
+        for i in range(100):
             answer = Answer()
             answer.author = random.choice(author_set)
             answer.question = random.choice(question_set)
