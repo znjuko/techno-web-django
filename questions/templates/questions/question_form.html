@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+    <div class="container">
+        <div class="row mt-4 mb-2">
+            <h3 class="mr-4">New Question</h3>
+        </div>
+        <div class="row">
+            <div class="col-8 p-0">
+                <form action="{% url 'ask' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="title">{{ form.title.label }}</label>
+                        {% render_field form.title class="form-control" placeholder="How to build a moon park?" id="title" %}
+                    </div>
+                    <div class="form-group">
+                        <label for="text">{{ form.text.label }}</label>
+                        {% render_field form.text class="form-control" placeholder="Really, how? Have no idea about it" id="text" %}
+                    </div>
+                    <div class="form-group">
+                        <label for="tags">{{ form.tags.label }}</label>
+                        {% render_field form.tags class="form-control" placeholder="moon, park, puzzle" id="tags" %}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Ask!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

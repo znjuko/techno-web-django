@@ -1,0 +1,11 @@
+from django.contrib import admin
+from .models import *
+
+admin.site.register(Question)
+admin.site.register(User)
+admin.site.register(Tag)
+admin.site.register(Answer)
+admin.site.register(QuestionLikes)
+admin.site.register(QuestionDislikes)
+admin.site.register(AnswerLikes)
+admin.site.register(AnswerDislikes)

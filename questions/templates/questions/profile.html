@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="row mt-4 mb-2">
+            <h3 class="mr-4">Profile</h3>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <p><b class="h5">Nickname:</b> {{ user.nickname }}</p>
+                <p><b class="h5">Email:</b> {{ user.email }}</p>
+                <p><b class="h5">Photo:</b> <img class="img-fluid img-thumbnail" src="{{ user.upload.url }}"/></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% load static %}
+
+<footer class="row p-3 mt-4">
+    <div class="col-8">
+        <div class="row">
+        {% if paginate.has_previous %}
+          <a class="pag mr-4" href="?page=1">first</a>
+          <a class="pag mr-4" href="?page={{ paginate.previous_page_number }}">{{ paginate.previous_page_number }}</a>
+        {% endif %}
+          <div class="pag mr-4">{{ paginate.number }}</div>
+        {% if paginate.has_next %}
+            <a class="pag mr-4" href="?page={{ paginate.next_page_number }}">{{ paginate.next_page_number }}</a>
+            <a class="pag mr-4" href="?page={{ paginate.paginator.num_pages }}">last</a>
+        {% endif %}
+          </div>
+      </div>
+  </footer>

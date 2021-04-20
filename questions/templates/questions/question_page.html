@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-8">
+                <div class="row p-3">
+                    <div class="col-3">
+                        <img class="user__image w-100 mb-5" src="{{ question.author.upload.url }}" width=110 alt>
+                        <span class="ml-4 mr-1">{{ question.num_likes }}</span>
+                            <button type="button" class="btn btn-success question__button__params" ></button>
+                        <span class="mr-1">{{ question.num_dislikes }}</span>
+                            <button type="button" class="btn btn-danger question__button__params" ></button>
+                    </div>
+                    <div class="col-9">
+                        <h2><a href="#" class="text-success">{{ question.title }}</a></h2>
+                        <p>{{ question.text }}</p>
+                        <span>Tags:</span>
+                        {% for tag in question.tags.all %}
+                            <span class="ml-3"><a href="#" class="text-success">{{ tag.title }}</a></span>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% if paginate %}
+                    <hr style="background-color: black;">
+                    {% for answer in paginate %}
+                        <div class="row item__form p-3 mt-4">
+                            <div class="col-2">
+                                <img class="user__image w-100 mb-2" src="{{ answer.author.upload.url }}" width=70 alt>
+                                <span class="mr-1">{{ answer.num_likes }}</span>
+                            <button type="button" class="btn btn-success question__button__params" ></button>
+                                <span class="mr-1">{{ answer.num_dislikes }}</span>
+                            <button type="button" class="btn btn-danger question__button__params" ></button>
+                            </div>
+                            <div class="col-10">
+                                <p>{{ answer.text }}</p>
+                                {% if answer.isCorrect %}
+                                    <form>
+                                        <div class="form-group form-check">
+                                            <input type="checkbox" class="form-check-input" id="exampleCheck1" checked>
+                                            <label class="form-check-label" for="exampleCheck1">Correct!</label>
+                                        </div>
+                                    </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <hr style="background-color: black;">
+                {% endif %}
+            </div>
+            {% include "questions/sidebar.html" %}
+            {% include "paginate.html" %}
+            <form action="{% url 'question' question.id %}" method="post" class="col-8 mt-3">
+                {% csrf_token %}
+                <div class="form-group">
+                    {% render_field form.text class="form-control" placeholder="Enter your answer here..." %}
+                </div>
+                <button type="submit" class="btn btn-primary">Answer</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

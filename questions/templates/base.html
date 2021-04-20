@@ -1,0 +1,89 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="shortcut icon" type="image/png" href="{% static "img/favicon.ico" %}">
+
+    <title>Q&A</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light navbar__bg__colour">
+    <a class="navbar-brand ml-3 mr-5" href="{% url 'index' %}">
+        <img class="img-thumbnail rounded float-left" src="{% static "img/favicon.ico" %}" alt>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <a href="{% url 'ask' %}"
+           class="navbar__button__hover my-2 my-lg-0 ml-5 mr-auto bg-success text-white">Ask!</a>
+        {% if user.is_authenticated %}
+            <div class="col-3 pt-2 pb-2">
+            <div class="row">
+                <div class="col-4">
+                    <a href="{% url 'profile' user.id %}"><img class="user__image w-100 img-thumbnail"
+                                                               src="{{ user.upload.url }}" alt></a>
+                </div>
+                {% if user.nickname %}
+                    <div class="col mt-1">
+                    <div class="row">
+                        <p>{{ user.nickname }}</p>
+                    </div>
+                    <div class="row">
+                        <p class="mr-4 mb-0"><a href="{% url 'editProfile' %}" class="btn btn-primary">settings</a>
+                        </p>
+                        <p class="mb-0"><a href="{% url 'signOut' %}" class="btn btn-primary">logout</a></p>
+                    </div>
+                {% else %}
+                    <div class="col pt-2 pb-2">
+                    <div class="row">
+                        <p class="mr-4 mb-0"><a href="#" class="btn btn-primary">settings</a></p>
+                        <p class="mb-0"><a href="{% url 'signOut' %}" class="btn btn-primary">logout</a></p>
+                    </div>
+                {% endif %}
+                </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="col-2 mt-3">
+                <div class="row">
+                    <div class="col mt-1">
+                        <div class="row">
+                            <p class="mr-4 mb-0"><a href="{% url 'signUp' %}" class="btn btn-primary">sign up</a>
+                            </p>
+                            <p><a href="{% url 'signIn' %}" class="btn btn-primary">sign in</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+</nav>
+{% block content %}{% endblock %}
+
+
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script>
+
+</script>
+
+
+</body>
+</html>

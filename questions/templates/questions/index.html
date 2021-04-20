@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="row mt-4 mb-2">
+            <h3 class="mr-4">
+                {% if request.path == "/" %}
+                    New Questions
+                {% else %}
+                    <a class="text-success" href="{% url 'index' %}">New Questions</a>
+                {% endif %}
+            </h3>
+
+            <h4 class="mt-1">
+                {% if request.path == "/" %}
+                    <a class="text-success" href="{% url 'hot' %}">Hot Questions</a>
+                {% else %}
+                    Hot Questions
+                {% endif %}
+            </h4>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                {% for question in paginate %}
+                    <div class="row item__form p-3 mt-4 item__bg">
+                        <div class="col-3">
+                            <img class="user__image w-100 img-thumbnail mb-4" src="{{ question.author.upload.url }}"
+                                 width=70
+                                 alt>
+                            <span class="ml-4 mr-1">{{ question.num_likes }}</span>
+                            <button type="button" class="btn btn-success question__button__params" ></button>
+                            <span class="mr-1">{{ question.num_dislikes }}</span>
+                            <button type="button" class="btn btn-danger question__button__params" ></button>
+                        </div>
+                        <div class="col-9">
+                            <h2><a class="text-success" href="{% url 'question' question.id %}">{{ question.title }}</a>
+                            </h2>
+                            <p>{{ question.text }}</p>
+                            <span class="mr-5">
+                          <a class="text-success"
+                             href="{% url 'question' question.id %}">answer({{ question.num_answers }})</a>
+                      </span>
+                            <span>Tags:</span>
+                            {% for tag in question.tags.all %}
+                                <span class="ml-3"><a class="text-success"
+                                                      href="{% url 'tag' tag.title %}">{{ tag.title }}</a></span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% include "questions/sidebar.html" %}
+            {% include "paginate.html" %}
+        </div>
+    </div>
+{% endblock %}

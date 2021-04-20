@@ -1,0 +1,65 @@
+.item__form {
+	background-color: white;
+}
+
+.item__form:hover {
+	background-color: #F6F5F5;
+}
+
+.user__image {
+	border: 2px solid gray;
+	border-radius: 100px;
+}
+
+.item__bg {
+	background-color: white;
+	transition: 500ms;
+}
+
+.item__bg:hover {
+	background-color: #F6F5F5;
+}
+
+.navbar__bg__colour {
+	background-color: #BCCEB8;
+}
+
+.common__bg {
+		background-color: #E6E6E6;
+}
+
+.question__button__params {
+	width: 20px;
+	height: 20px;
+}
+
+.pag {
+	border:1px solid black; padding:0.3rem 0.8rem 0.3rem 0.8rem;
+}
+
+.navbar__button__hover {
+	border: 1px solid darkolivegreen;
+	padding: 10px;
+	box-shadow: 0 0 20px rgba(0,0,0,0.5);
+	width: 10%;
+	text-align: center;
+	border-radius: 20px;
+	color: black;
+	transition: 500ms;
+}
+
+.navbar__button__hover:hover {
+	background-color: rgba(255, 21, 56, 0.5);
+	color: #1b6d85;
+	text-decoration: none;
+}
+
+.error {
+	color: red;
+}
+
+ul.errorlist {
+	list-style: none;
+	padding: 0;
+	color: red;
+}
